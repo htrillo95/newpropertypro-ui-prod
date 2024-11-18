@@ -4,6 +4,8 @@ import HomePage from './components/HomePage';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import AccessControlledPage from './components/AccessControlledPage';
+import AdminLogin from './components/AdminLogin';
+import AdminPanel from './components/AdminPanel';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/dashboard" element={<AccessControlledPage />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminPanel />} />
         </Routes>
       </div>
     </Router>
