@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function AdminLogin() {
+function AdminLogin({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // Hard-coded admin credentials
+  const ADMIN_USERNAME = 'admin';
+  const ADMIN_PASSWORD = 'password123';
+
   const handleLogin = (e) => {
     e.preventDefault();
-    setError('');
+    setError(''); // Clear previous errors
 
-    // Hard-coded admin credentials
-    const adminUsername = 'admin';
-    const adminPassword = 'password123';
-
-    if (username === adminUsername && password === adminPassword) {
-      // Redirect to the admin panel
-      navigate('/admin');
+    // Verify credentials against hard-coded values
+    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+      sessionStorage.setItem('role', 'admin'); // Store admin role in session storage
+      onLogin(); // Update admin login state
+      navigate('/admin'); // Redirect to admin panel
     } else {
-      setError('Invalid admin credentials');
+      setError('Invalid admin login credentials');
     }
   };
 
@@ -29,14 +31,14 @@ function AdminLogin() {
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <input
         type="text"
-        placeholder="Username"
+        placeholder="Admin Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         required
       />
       <input
         type="password"
-        placeholder="Password"
+        placeholder="Admin Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required

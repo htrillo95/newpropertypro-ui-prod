@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function LoginForm({ onLogin }) {
+function TenantLogin({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -23,10 +23,12 @@ function LoginForm({ onLogin }) {
       }
 
       const data = await response.json();
+
+      // Save user ID and logged-in state
       sessionStorage.setItem('tenantId', data.id);
-      sessionStorage.setItem('role', 'tenant');
-      onLogin(); // Update tenant login state
-      navigate('/dashboard');
+      sessionStorage.setItem('loggedIn', 'true');
+      onLogin(); // Update login state in App.js
+      navigate('/dashboard'); // Redirect to tenant dashboard
     } catch (error) {
       setError(error.message);
     }
@@ -55,4 +57,4 @@ function LoginForm({ onLogin }) {
   );
 }
 
-export default LoginForm;
+export default TenantLogin;
