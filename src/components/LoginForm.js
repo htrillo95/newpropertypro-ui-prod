@@ -9,7 +9,7 @@ function LoginForm({ onLogin }) {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(''); // Clear any previous errors
+    setError(''); // Clear previous errors
 
     try {
       const response = await fetch('http://localhost:8080/api/users/login', {
@@ -23,10 +23,10 @@ function LoginForm({ onLogin }) {
       }
 
       const data = await response.json();
-      sessionStorage.setItem('tenantId', data.id);
-      sessionStorage.setItem('role', 'tenant');
-      onLogin(); // Update tenant login state
-      navigate('/dashboard');
+      sessionStorage.setItem('tenantId', data.id); // Store tenant ID
+      sessionStorage.setItem('role', 'tenant'); // Store role
+      onLogin(); // Update tenant login state in App.js
+      navigate('/dashboard'); // Redirect to tenant dashboard
     } catch (error) {
       setError(error.message);
     }

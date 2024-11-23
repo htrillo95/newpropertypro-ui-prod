@@ -62,15 +62,9 @@ function TenantDashboard() {
     }
   };
 
-  const handleLogout = () => {
-    sessionStorage.clear();
-    window.location.href = '/login';
-  };
-
   return (
     <div>
       <h2>Welcome to Your Dashboard</h2>
-      <button onClick={handleLogout}>Logout</button>
 
       <h3>Submit Maintenance Request</h3>
       <form onSubmit={handleMaintenanceRequestSubmit}>
