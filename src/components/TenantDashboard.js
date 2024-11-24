@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 function TenantDashboard() {
   const [issueDescription, setIssueDescription] = useState('');
   const [maintenanceRequests, setMaintenanceRequests] = useState([]);
-  const [message, setMessage] = useState('');
 
   useEffect(() => {
     const fetchRequests = async () => {
       const tenantId = sessionStorage.getItem('tenantId');
-
       if (!tenantId) {
-        setMessage('You must log in to view your maintenance requests.');
+        toast.error('You must log in to view your maintenance requests.');
         return;
       }
 
@@ -20,11 +19,11 @@ function TenantDashboard() {
           const data = await response.json();
           setMaintenanceRequests(data);
         } else {
-          setMessage('Failed to fetch maintenance requests.');
+          toast.error('Failed to fetch maintenance requests.');
         }
       } catch (error) {
         console.error('Error fetching maintenance requests:', error);
-        setMessage('An error occurred. Please try again.');
+        toast.error('An error occurred while fetching requests.');
       }
     };
 
@@ -33,11 +32,20 @@ function TenantDashboard() {
 
   const handleMaintenanceRequestSubmit = async (e) => {
     e.preventDefault();
-    setMessage('');
+
+    if (!issueDescription.trim()) {
+      toast.error('Description cannot be empty.');
+      return;
+    }
+
+    if (issueDescription.length > 300) {
+      toast.error('Description cannot exceed 300 characters.');
+      return;
+    }
 
     const tenantId = sessionStorage.getItem('tenantId');
     if (!tenantId) {
-      setMessage('You must log in to submit a request.');
+      toast.error('You must log in to submit a request.');
       return;
     }
 
@@ -50,34 +58,32 @@ function TenantDashboard() {
 
       if (response.ok) {
         const newRequest = await response.json();
-        setMessage('Maintenance request submitted successfully!');
-        setIssueDescription('');
         setMaintenanceRequests([...maintenanceRequests, newRequest]);
+        setIssueDescription('');
+        toast.success('Maintenance request submitted successfully!');
       } else {
-        setMessage('Failed to submit maintenance request.');
+        toast.error('Failed to submit maintenance request.');
       }
     } catch (error) {
       console.error('Error submitting maintenance request:', error);
-      setMessage('An error occurred. Please try again.');
+      toast.error('An error occurred while submitting your request.');
     }
   };
 
   return (
     <div>
       <h2>Welcome to Your Dashboard</h2>
-
       <h3>Submit Maintenance Request</h3>
       <form onSubmit={handleMaintenanceRequestSubmit}>
         <textarea
           value={issueDescription}
           onChange={(e) => setIssueDescription(e.target.value)}
-          placeholder="Describe the issue"
+          placeholder="Describe the issue (max 300 characters)"
+          maxLength="300"
           required
         />
         <button type="submit">Submit Request</button>
       </form>
-
-      {message && <p>{message}</p>}
 
       <h3>Your Maintenance Requests</h3>
       {maintenanceRequests.length > 0 ? (

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 function AdminPanel() {
   const [properties, setProperties] = useState([]);
@@ -9,8 +10,6 @@ function AdminPanel() {
     propertyLink: '',
     imageUrl: '',
   });
-  const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
 
   useEffect(() => {
     fetchProperties();
@@ -23,16 +22,22 @@ function AdminPanel() {
         const data = await response.json();
         setProperties(data);
       } else {
-        setError('Failed to fetch properties.');
+        toast.error('Failed to fetch properties.');
       }
     } catch (err) {
       console.error('Error fetching properties:', err);
-      setError('An error occurred. Please try again later.');
+      toast.error('An error occurred while fetching properties. Please try again.');
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.name || !formData.address || !formData.rentAmount) {
+      toast.error('Name, address, and rent amount are required.');
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:8080/api/properties', {
         method: 'POST',
@@ -44,13 +49,13 @@ function AdminPanel() {
         const newProperty = await response.json();
         setProperties([...properties, newProperty]);
         setFormData({ name: '', address: '', rentAmount: '', propertyLink: '', imageUrl: '' });
-        setMessage('Property added successfully!');
+        toast.success('Property added successfully!');
       } else {
-        setMessage('Failed to add property.');
+        toast.error('Failed to add property.');
       }
     } catch (err) {
       console.error('Error adding property:', err);
-      setMessage('An error occurred. Please try again.');
+      toast.error('An error occurred. Please try again.');
     }
   };
 
@@ -61,13 +66,13 @@ function AdminPanel() {
         const response = await fetch(`http://localhost:8080/api/properties/${id}`, { method: 'DELETE' });
         if (response.ok) {
           setProperties(properties.filter((property) => property.id !== id));
-          setMessage('Property deleted successfully.');
+          toast.success('Property deleted successfully.');
         } else {
-          setMessage('Failed to delete property.');
+          toast.error('Failed to delete property.');
         }
       } catch (err) {
         console.error('Error deleting property:', err);
-        setMessage('An error occurred. Please try again.');
+        toast.error('An error occurred. Please try again.');
       }
     }
   };
@@ -123,9 +128,6 @@ function AdminPanel() {
         <button type="submit">Add Property</button>
       </form>
 
-      {message && <p>{message}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
       <h3>Existing Properties</h3>
       {properties.length > 0 ? (
         <ul>
@@ -134,8 +136,18 @@ function AdminPanel() {
               <p><strong>{property.name}</strong></p>
               <p>{property.address}</p>
               <p>Rent: ${property.rentAmount}</p>
-              <img src={property.imageUrl} alt={property.name} style={{ width: '100px' }} />
-              <a href={property.propertyLink} target="_blank" rel="noopener noreferrer">View Listing</a>
+              {property.imageUrl && (
+                <img
+                  src={property.imageUrl}
+                  alt={property.name}
+                  style={{ width: '150px', height: '100px', objectFit: 'cover' }}
+                />
+              )}
+              {property.propertyLink && (
+                <a href={property.propertyLink} target="_blank" rel="noopener noreferrer">
+                  View Listing
+                </a>
+              )}
               <button onClick={() => handleDelete(property.id)}>Delete</button>
             </li>
           ))}
