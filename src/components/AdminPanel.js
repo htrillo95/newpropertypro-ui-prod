@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
+import '../styles/AdminPanel.css';
+
 function AdminPanel() {
   const [properties, setProperties] = useState([]);
   const [maintenanceRequests, setMaintenanceRequests] = useState([]);

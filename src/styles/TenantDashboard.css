@@ -1,0 +1,66 @@
+/* TenantDashboard.css */
+.tenant-dashboard {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.submit-request {
+    margin-bottom: 20px;
+}
+
+.submit-request textarea {
+    width: 100%;
+    min-height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.submit-request button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.submit-request button:hover {
+    background-color: #0056b3;
+}
+
+.maintenance-requests {
+    margin-top: 20px;
+}
+
+.maintenance-requests ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.maintenance-requests li {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.maintenance-requests li p {
+    margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+    .submit-request textarea {
+        min-height: 80px;
+    }
+
+    .maintenance-requests li {
+        padding: 10px;
+    }
+}

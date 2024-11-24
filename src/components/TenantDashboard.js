@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
+import '../styles/TenantDashboard.css';
+
 function TenantDashboard() {
   const [issueDescription, setIssueDescription] = useState('');
   const [maintenanceRequests, setMaintenanceRequests] = useState([]);
