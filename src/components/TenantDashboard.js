@@ -73,32 +73,49 @@ function TenantDashboard() {
   };
 
   return (
-    <div>
-      <h2>Welcome to Your Dashboard</h2>
-      <h3>Submit Maintenance Request</h3>
-      <form onSubmit={handleMaintenanceRequestSubmit}>
-        <textarea
-          value={issueDescription}
-          onChange={(e) => setIssueDescription(e.target.value)}
-          placeholder="Describe the issue (max 300 characters)"
-          maxLength="300"
-          required
-        />
-        <button type="submit">Submit Request</button>
-      </form>
+    <div className="tenant-dashboard">
+      <header className="dashboard-header">
+        <h1>Welcome to Your Dashboard</h1>
+      </header>
 
-      <h3>Your Maintenance Requests</h3>
-      {maintenanceRequests.length > 0 ? (
-        <ul>
-          {maintenanceRequests.map((request) => (
-            <li key={request.id}>
-              <strong>{request.description}</strong> - Status: {request.status}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No maintenance requests found.</p>
-      )}
+      <section className="submit-form-section">
+        <h2>Submit Maintenance Request</h2>
+        <form onSubmit={handleMaintenanceRequestSubmit}>
+          <textarea
+            value={issueDescription}
+            onChange={(e) => setIssueDescription(e.target.value)}
+            placeholder="Describe the issue (max 300 characters)"
+            maxLength="300"
+            required
+          />
+          <button type="submit" className="submit-button">
+            Submit Request
+          </button>
+        </form>
+      </section>
+
+      <section className="requests-section">
+        <h2>Your Maintenance Requests</h2>
+        {maintenanceRequests.length > 0 ? (
+          <div className="requests-list">
+            {maintenanceRequests.map((request) => (
+              <div key={request.id} className="request-card">
+                <p className="request-description">
+                  <strong>{request.description}</strong>
+                </p>
+                <p className="request-status">
+                  <span className="label">Status:</span>{' '}
+                  <span className={`value ${request.status.toLowerCase().replace(' ', '-')}`}>
+                    {request.status}
+                  </span>
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No maintenance requests found.</p>
+        )}
+      </section>
     </div>
   );
 }

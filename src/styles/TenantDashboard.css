@@ -1,66 +1,131 @@
 /* TenantDashboard.css */
+
+/* General Styling */
 .tenant-dashboard {
+    font-family: Arial, sans-serif;
     padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    text-align: center;
 }
 
-.submit-request {
+.dashboard-header {
+    text-align: center;
     margin-bottom: 20px;
 }
 
-.submit-request textarea {
-    width: 100%;
-    min-height: 100px;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+.dashboard-header h1 {
+    font-size: 2rem;
+    color: #007bff;
 }
 
-.submit-request button {
+/* Submit Form Section */
+.submit-form-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.submit-form-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.submit-form-section form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submit-form-section textarea {
+    width: 100%;
+    max-width: 500px;
+    height: 100px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.submit-form-section .submit-button {
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
-    color: white;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.submit-request button:hover {
+.submit-form-section .submit-button:hover {
     background-color: #0056b3;
 }
 
-.maintenance-requests {
-    margin-top: 20px;
+/* Requests Section */
+.requests-section {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.maintenance-requests ul {
-    list-style-type: none;
-    padding: 0;
+.requests-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
 }
 
-.maintenance-requests li {
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
+.requests-list {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.maintenance-requests li p {
-    margin: 5px 0;
+.request-card {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.request-description {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.request-status .label {
+    font-weight: bold;
+    color: #333;
+}
+
+.request-status .value {
+    font-weight: bold;
+}
+
+.request-status .value.pending {
+    color: #ffc107; /* Yellow for Pending */
+}
+
+.request-status .value.in-progress {
+    color: #17a2b8; /* Blue for In Progress */
+}
+
+.request-status .value.resolved {
+    color: #28a745; /* Green for Resolved */
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .submit-request textarea {
-        min-height: 80px;
+    .requests-list {
+        flex-direction: column;
+        align-items: center;
     }
 
-    .maintenance-requests li {
-        padding: 10px;
+    .submit-form-section textarea {
+        width: 100%;
     }
 }

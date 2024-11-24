@@ -1,5 +1,4 @@
 import React from 'react';
-
 import '../styles/HomePage.css';
 
 function HomePage() {
@@ -51,12 +50,13 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Call-to-Action Section */}
-      <section className="cta-section">
-        <h2>Get in Touch</h2>
-        <p>Ready to learn more about our services? Contact us today!</p>
-        <button className="cta-button">Contact Us</button>
-      </section>
+      {/* Footer Section */}
+      <footer className="footer">
+        <p>&copy; 2024 [Your Business Name]. All Rights Reserved.</p>
+        <p>
+          <a href="mailto:info@yourbusiness.com">Email Us</a> | Call us at: (555) 555-5555
+        </p>
+      </footer>
     </div>
   );
 }
