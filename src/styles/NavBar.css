@@ -1,0 +1,56 @@
+/* Updated NavBar.css */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Space between logo and links */
+    align-items: center; /* Vertically align items */
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff6600; /* Customize logo color */
+    text-decoration: none;
+}
+
+.navbar .nav-links {
+    display: flex;
+    justify-content: flex-end; /* Align links to the right */
+    gap: 15px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    color: #007bff;
+}
+
+.navbar .right-links {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between links and logout button */
+}
+
+.navbar button {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navbar button:hover {
+    background-color: #0056b3;
+}

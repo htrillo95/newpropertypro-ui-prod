@@ -1,95 +1,185 @@
-/* HomePage.css */
-
-.home-page {
+/* General Styles */
+body {
     font-family: Arial, sans-serif;
-    padding: 20px;
-    text-align: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
   
-  /* Hero Section */
-  .hero-section {
-    background-color: #f5f5f5;
-    padding: 30px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+  .homepage {
+    width: 100%;
+    overflow-x: hidden;
   }
   
-  .hero-section h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+  h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+    color: #333;
   }
   
-  .hero-section p {
-    font-size: 1.2rem;
-    color: #666;
-  }
-  
-  /* About Us Section */
-  .about-section {
-    margin: 30px 0;
-    text-align: left;
-  }
-  
-  .about-section h2 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-  }
-  
-  .about-section p {
-    font-size: 1rem;
+  p {
     line-height: 1.6;
     color: #555;
   }
   
+  /* Hero Section */
+  .hero-section {
+    background: url('https://via.placeholder.com/1500x600') no-repeat center center/cover;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* About Section */
+  .about-section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #f8f9fa;
+  }
+  
+  .about-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .about-section p {
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
   /* Services Section */
   .services-section {
-    margin: 30px 0;
+    padding: 50px 20px;
+    background-color: #ffffff;
     text-align: center;
   }
   
   .services-section h2 {
     font-size: 1.8rem;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
   
-  .service-item {
-    background-color: #ffffff;
+  .services-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .service-card {
+    background-color: #f8f9fa;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    margin: 10px;
-    display: inline-block;
-    width: 250px;
-    text-align: center;
-    vertical-align: top;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
   }
   
-  .service-item h3 {
-    font-size: 1.3rem;
+  .service-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 20px;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .footer-left {
+    flex: 1;
+  }
+  
+  .footer-left h4 {
+    font-size: 1.5rem;
     margin-bottom: 10px;
   }
   
-  .service-item p {
-    font-size: 1rem;
-    color: #555;
-  }
-  
-  /* Footer Section */
-  .footer {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #f8f8f8; /* Lighter color to match the page flow */
-    color: #333;
-    border-top: 1px solid #ddd;
+  .footer-left p {
+    margin: 5px 0;
     font-size: 0.9rem;
   }
   
-  .footer a {
-    color: #007bff;
-    text-decoration: none;
+  .footer-right {
+    flex: 1;
+    text-align: right;
   }
   
-  .footer a:hover {
-    text-decoration: underline;
+  .footer-right h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .footer-right ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-right li {
+    margin-bottom: 8px;
+  }
+  
+  .footer-right a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-right a:hover {
+    color: #007bff;
+  }
+  
+  /* Responsive Design for Footer */
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .footer-left,
+    .footer-right {
+      margin: 20px 0;
+    }
   }
