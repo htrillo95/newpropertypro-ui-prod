@@ -1,0 +1,61 @@
+/* Register Form Container */
+.register-container {
+    width: 100%;
+    max-width: 400px; /* Limit the form width for readability */
+    margin: 50px auto; /* Center the form on the page */
+    background: #ffffff; /* White background for contrast */
+    padding: 30px; /* Add padding inside the box */
+    border-radius: 8px; /* Smooth corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-align: center; /* Center-align text */
+  }
+  
+  /* Form Headings */
+  .register-container h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.8rem;
+  }
+  
+  .register-container .form-instructions {
+    color: #555; /* Muted color for readability */
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  
+  .register-container .error-message {
+    color: red;
+    font-size: 0.8rem;
+  }
+  
+  /* Form Inputs */
+  .register-container input {
+    width: 100%;
+    padding: 10px; /* Ensure consistent padding */
+    margin-bottom: 15px; /* Space between fields */
+    border: 1px solid #ccc; /* Light border for inputs */
+    border-radius: 5px; /* Smooth corners */
+    box-sizing: border-box; /* Include padding and border in width */
+  }
+  
+  /* Submit Button */
+  .register-container button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .register-container button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  /* Page Background */
+  body {
+    background-color: #f5f7fa; /* Soft neutral background color */
+  }

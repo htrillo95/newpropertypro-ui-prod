@@ -59,8 +59,8 @@ function HomePage() {
           {/* Left Section: Logo and Contact */}
           <div className="footer-left">
             <h4>YourLogo</h4>
-            <p>123 Chestnut Street, Suite 202</p>
-            <p>Philadelphia, PA 19106</p>
+            <p>Your Address Here, Suite Here</p>
+            <p>Philadelphia, PA Zip Code Here</p>
             <p>Email: info@yourbusiness.com</p>
             <p>Phone: (555) 555-5555</p>
           </div>
@@ -71,8 +71,8 @@ function HomePage() {
             <ul>
               <li><a href="/about">About</a></li>
               <li><a href="/properties">Featured Properties</a></li>
-              <li><a href="/tenants">Tenants</a></li>
-              <li><a href="/apply">Apply Now</a></li>
+              <li><a href="/login">Tenants</a></li>
+              <li><a href="/register">Register</a></li>
             </ul>
           </div>
         </div>
