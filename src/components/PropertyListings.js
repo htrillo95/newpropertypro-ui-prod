@@ -5,8 +5,10 @@ function PropertyListings() {
   const [filteredProperties, setFilteredProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(''); // For search bar
-  const [rentRange, setRentRange] = useState({ min: 0, max: 10000 }); // Rent range filter
+  const [searchTerm, setSearchTerm] = useState('');
+  const [rentRange, setRentRange] = useState({ min: 0, max: 10000 });
+  const [currentPage, setCurrentPage] = useState(1); // Pagination current page
+  const itemsPerPage = 5; // Number of properties per page
 
   useEffect(() => {
     const fetchProperties = async () => {
@@ -38,6 +40,7 @@ function PropertyListings() {
       return matchesSearch && matchesRent;
     });
     setFilteredProperties(filtered);
+    setCurrentPage(1); // Reset to first page when filters change
   };
 
   const handleSearch = (e) => {
@@ -56,8 +59,17 @@ function PropertyListings() {
   const handleResetFilters = () => {
     setSearchTerm('');
     setRentRange({ min: 0, max: 10000 });
-    setFilteredProperties(properties); // Reset to all properties
+    setFilteredProperties(properties);
+    setCurrentPage(1);
   };
+
+  // Pagination Logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentProperties = filteredProperties.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredProperties.length / itemsPerPage);
+
+  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
 
   if (loading) return <p>Loading properties...</p>;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
@@ -101,9 +113,9 @@ function PropertyListings() {
       </div>
 
       {/* Property Listings */}
-      {filteredProperties.length > 0 ? (
+      {currentProperties.length > 0 ? (
         <div className="property-list">
-          {filteredProperties.map((property) => (
+          {currentProperties.map((property) => (
             <div key={property.id} className="property-item">
               <h3>{property.name}</h3>
               <p>Address: {property.address}</p>
@@ -115,6 +127,28 @@ function PropertyListings() {
         </div>
       ) : (
         <p>No properties found.</p>
+      )}
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div style={{ marginTop: '20px' }}>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index}
+              onClick={() => handlePageChange(index + 1)}
+              style={{
+                margin: '0 5px',
+                padding: '5px 10px',
+                backgroundColor: currentPage === index + 1 ? '#007BFF' : '#f0f0f0',
+                color: currentPage === index + 1 ? '#fff' : '#000',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
       )}
     </div>
   );

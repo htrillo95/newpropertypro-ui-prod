@@ -3,9 +3,7 @@ import { toast } from 'react-toastify';
 
 function AdminPanel() {
   const [properties, setProperties] = useState([]);
-  const [filteredProperties, setFilteredProperties] = useState([]); // For filtered list
-  const [searchTerm, setSearchTerm] = useState(''); // Search input
-  const [rentRange, setRentRange] = useState({ min: 0, max: 10000 }); // Rent range filter
+  const [maintenanceRequests, setMaintenanceRequests] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -16,6 +14,7 @@ function AdminPanel() {
 
   useEffect(() => {
     fetchProperties();
+    fetchMaintenanceRequests();
   }, []);
 
   const fetchProperties = async () => {
@@ -24,7 +23,6 @@ function AdminPanel() {
       if (response.ok) {
         const data = await response.json();
         setProperties(data);
-        setFilteredProperties(data); // Initialize filtered list
       } else {
         toast.error('Failed to fetch properties.');
       }
@@ -34,29 +32,19 @@ function AdminPanel() {
     }
   };
 
-  const applyFilters = (search, range) => {
-    const filtered = properties.filter((property) => {
-      const matchesSearch =
-        property.name.toLowerCase().includes(search.toLowerCase()) ||
-        property.address.toLowerCase().includes(search.toLowerCase());
-      const matchesRent =
-        property.rentAmount >= range.min && property.rentAmount <= range.max;
-      return matchesSearch && matchesRent;
-    });
-    setFilteredProperties(filtered);
-  };
-
-  const handleSearch = (e) => {
-    const term = e.target.value.toLowerCase();
-    setSearchTerm(term);
-    applyFilters(term, rentRange);
-  };
-
-  const handleRentChange = (e) => {
-    const { name, value } = e.target;
-    const newRange = { ...rentRange, [name]: Number(value) };
-    setRentRange(newRange);
-    applyFilters(searchTerm, newRange);
+  const fetchMaintenanceRequests = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/api/maintenance-request');
+      if (response.ok) {
+        const data = await response.json();
+        setMaintenanceRequests(data);
+      } else {
+        toast.error('Failed to fetch maintenance requests.');
+      }
+    } catch (err) {
+      console.error('Error fetching maintenance requests:', err);
+      toast.error('An error occurred while fetching maintenance requests. Please try again.');
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -71,7 +59,6 @@ function AdminPanel() {
       if (response.ok) {
         const newProperty = await response.json();
         setProperties([...properties, newProperty]);
-        setFilteredProperties([...filteredProperties, newProperty]); // Update filtered list
         setFormData({ name: '', address: '', rentAmount: '', propertyLink: '', imageUrl: '' });
         toast.success('Property added successfully!');
       } else {
@@ -89,9 +76,7 @@ function AdminPanel() {
       try {
         const response = await fetch(`http://localhost:8080/api/properties/${id}`, { method: 'DELETE' });
         if (response.ok) {
-          const updatedProperties = properties.filter((property) => property.id !== id);
-          setProperties(updatedProperties);
-          setFilteredProperties(updatedProperties); // Update filtered list
+          setProperties(properties.filter((property) => property.id !== id));
           toast.success('Property deleted successfully.');
         } else {
           toast.error('Failed to delete property.');
@@ -103,54 +88,36 @@ function AdminPanel() {
     }
   };
 
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/maintenance-request/${id}/status?status=${newStatus}`, {
+        method: 'PUT',
+      });
+
+      if (response.ok) {
+        setMaintenanceRequests((prevRequests) =>
+          prevRequests.map((req) =>
+            req.id === id ? { ...req, status: newStatus } : req
+          )
+        );
+        toast.success('Maintenance request status updated.');
+      } else {
+        toast.error('Failed to update status.');
+      }
+    } catch (err) {
+      console.error('Error updating status:', err);
+      toast.error('An error occurred while updating status.');
+    }
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleResetFilters = () => {
-    setSearchTerm('');
-    setRentRange({ min: 0, max: 10000 });
-    setFilteredProperties(properties); // Reset to all properties
-  };
-
   return (
     <div>
       <h2>Admin Panel</h2>
-
-      {/* Filters */}
-      <div>
-        <h3>Filters</h3>
-        <input
-          type="text"
-          placeholder="Search by property name or address"
-          value={searchTerm}
-          onChange={handleSearch}
-        />
-        <div>
-          <label>
-            Min Rent:
-            <input
-              type="number"
-              name="min"
-              value={rentRange.min}
-              onChange={handleRentChange}
-              style={{ width: '80px', marginLeft: '10px' }}
-            />
-          </label>
-          <label style={{ marginLeft: '20px' }}>
-            Max Rent:
-            <input
-              type="number"
-              name="max"
-              value={rentRange.max}
-              onChange={handleRentChange}
-              style={{ width: '80px', marginLeft: '10px' }}
-            />
-          </label>
-        </div>
-        <button onClick={handleResetFilters} style={{ marginTop: '10px' }}>Reset Filters</button>
-      </div>
 
       {/* Add Property */}
       <h3>Add Property</h3>
@@ -196,11 +163,11 @@ function AdminPanel() {
         <button type="submit">Add Property</button>
       </form>
 
-      {/* Existing Properties */}
+      {/* Properties */}
       <h3>Existing Properties</h3>
-      {filteredProperties.length > 0 ? (
+      {properties.length > 0 ? (
         <ul>
-          {filteredProperties.map((property) => (
+          {properties.map((property) => (
             <li key={property.id}>
               <p><strong>{property.name}</strong></p>
               <p>{property.address}</p>
@@ -213,6 +180,29 @@ function AdminPanel() {
         </ul>
       ) : (
         <p>No properties found.</p>
+      )}
+
+      {/* Maintenance Requests */}
+      <h3>Maintenance Requests</h3>
+      {maintenanceRequests.length > 0 ? (
+        <ul>
+          {maintenanceRequests.map((request) => (
+            <li key={request.id}>
+              <p><strong>Description:</strong> {request.description}</p>
+              <p><strong>Status:</strong> {request.status}</p>
+              <select
+                value={request.status}
+                onChange={(e) => handleStatusChange(request.id, e.target.value)}
+              >
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+              </select>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No maintenance requests found.</p>
       )}
     </div>
   );
