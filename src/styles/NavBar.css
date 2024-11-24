@@ -8,9 +8,8 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    width: 100%; /* Ensure navbar stretches across the screen */
-    max-width: 400px; /* Match the width of the register container */
-    margin: 0 auto; /* Center the navbar */
+    width: 100%; /* Stretch navbar across the entire width */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
 
 .navbar .logo {
@@ -23,7 +22,8 @@
 .navbar .nav-links {
     display: flex;
     justify-content: flex-end; /* Align links to the right */
-    gap: 15px;
+    gap: 15px; /* Space between links */
+    margin-left: auto; /* Push links to the far right */
 }
 
 .navbar a {
@@ -51,8 +51,32 @@
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-left: 10px; /* Add spacing from adjacent links */
 }
 
 .navbar button:hover {
     background-color: #0056b3;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row; /* Ensure logo and links are in one line */
+        padding: 10px 15px;
+    }
+
+    .navbar .logo {
+        margin-right: auto; /* Push logo to the left */
+    }
+
+    .navbar .nav-links {
+        flex-direction: row; /* Keep links in one row */
+        justify-content: flex-end; /* Align links to the right */
+        flex-wrap: nowrap; /* Prevent wrapping */
+        margin-left: auto;
+    }
+
+    .navbar button {
+        margin-left: 15px; /* Space for logout button */
+    }
 }

@@ -4,26 +4,26 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  .homepage {
+}
+
+.homepage {
     width: 100%;
     overflow-x: hidden;
-  }
-  
-  h1, h2, h3 {
+}
+
+h1, h2, h3 {
     margin: 0;
     padding: 0;
     color: #333;
-  }
-  
-  p {
+}
+
+p {
     line-height: 1.6;
     color: #555;
-  }
-  
-  /* Hero Section */
-  .hero-section {
+}
+
+/* Hero Section */
+.hero-section {
     background: url('https://via.placeholder.com/1500x600') no-repeat center center/cover;
     height: 80vh;
     display: flex;
@@ -31,19 +31,19 @@ body {
     justify-content: center;
     text-align: center;
     color: #fff;
-  }
-  
-  .hero-content h1 {
+}
+
+.hero-content h1 {
     font-size: 2.5rem;
     margin-bottom: 15px;
-  }
-  
-  .hero-content p {
+}
+
+.hero-content p {
     font-size: 1.2rem;
     margin-bottom: 20px;
-  }
-  
-  .cta-button {
+}
+
+.cta-button {
     padding: 10px 20px;
     font-size: 1rem;
     color: #fff;
@@ -52,50 +52,50 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .cta-button:hover {
+}
+
+.cta-button:hover {
     background-color: #0056b3;
-  }
-  
-  /* About Section */
-  .about-section {
+}
+
+/* About Section */
+.about-section {
     padding: 50px 20px;
     text-align: center;
     background-color: #f8f9fa;
-  }
-  
-  .about-section h2 {
+}
+
+.about-section h2 {
     font-size: 1.8rem;
     margin-bottom: 20px;
-  }
-  
-  .about-section p {
+}
+
+.about-section p {
     font-size: 1rem;
     max-width: 600px;
     margin: 0 auto;
-  }
-  
-  /* Services Section */
-  .services-section {
+}
+
+/* Services Section */
+.services-section {
     padding: 50px 20px;
     background-color: #ffffff;
     text-align: center;
-  }
-  
-  .services-section h2 {
+}
+
+.services-section h2 {
     font-size: 1.8rem;
     margin-bottom: 30px;
-  }
-  
-  .services-grid {
+}
+
+.services-grid {
     display: flex;
     gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
-  }
-  
-  .service-card {
+}
+
+.service-card {
     background-color: #f8f9fa;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -103,83 +103,99 @@ body {
     width: 300px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-  }
-  
-  .service-card:hover {
+}
+
+.service-card:hover {
     transform: translateY(-5px);
-  }
-  
-  .service-card h3 {
+}
+
+.service-card h3 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-  }
-  
-  /* Footer */
-  .footer {
+}
+
+/* Footer Section */
+.footer {
     background-color: #333;
     color: #fff;
     padding: 40px 20px;
-  }
-  
-  .footer-container {
+}
+
+.footer-container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-  }
-  
-  .footer-left {
+    flex-wrap: wrap; /* Allow stacking on smaller screens */
+}
+
+.footer-left,
+.footer-right {
     flex: 1;
-  }
-  
-  .footer-left h4 {
+    margin: 0;
+    padding: 0 10px;
+}
+
+.footer-left {
+    text-align: left;
+}
+
+.footer-left h4 {
     font-size: 1.5rem;
     margin-bottom: 10px;
-  }
-  
-  .footer-left p {
+}
+
+.footer-left p {
     margin: 5px 0;
     font-size: 0.9rem;
-  }
-  
-  .footer-right {
-    flex: 1;
-    text-align: right;
-  }
-  
-  .footer-right h4 {
+}
+
+.footer-right {
+    text-align: right; /* Align "Explore" section to the right on desktop */
+}
+
+.footer-right h4 {
     font-size: 1.5rem;
     margin-bottom: 10px;
-  }
-  
-  .footer-right ul {
+}
+
+.footer-right ul {
     list-style: none;
     padding: 0;
-  }
-  
-  .footer-right li {
+}
+
+.footer-right li {
     margin-bottom: 8px;
-  }
-  
-  .footer-right a {
+}
+
+.footer-right a {
     color: #fff;
     text-decoration: none;
     transition: color 0.3s ease;
-  }
-  
-  .footer-right a:hover {
+}
+
+.footer-right a:hover {
     color: #007bff;
-  }
-  
-  /* Responsive Design for Footer */
-  @media (max-width: 768px) {
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
     .footer-container {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+        flex-direction: column; /* Stack sections on mobile */
+        align-items: flex-start; /* Align everything to the left */
     }
-  
+
     .footer-left,
     .footer-right {
-      margin: 20px 0;
+        width: 100%; /* Ensure sections span full width */
+        text-align: left; /* Align both sections to the left */
     }
-  }
+
+    .footer-right ul {
+        padding-left: 0; /* Ensure consistent alignment with the logo section */
+    }
+
+    .footer-right li {
+        margin-left: 0; /* Remove unnecessary margin */
+        margin-bottom: 5px; /* Add consistent spacing */
+    }
+}
