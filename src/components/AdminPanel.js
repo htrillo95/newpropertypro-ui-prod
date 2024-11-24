@@ -3,6 +3,9 @@ import { toast } from 'react-toastify';
 
 function AdminPanel() {
   const [properties, setProperties] = useState([]);
+  const [filteredProperties, setFilteredProperties] = useState([]); // For filtered list
+  const [searchTerm, setSearchTerm] = useState(''); // Search input
+  const [rentRange, setRentRange] = useState({ min: 0, max: 10000 }); // Rent range filter
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -21,6 +24,7 @@ function AdminPanel() {
       if (response.ok) {
         const data = await response.json();
         setProperties(data);
+        setFilteredProperties(data); // Initialize filtered list
       } else {
         toast.error('Failed to fetch properties.');
       }
@@ -30,14 +34,33 @@ function AdminPanel() {
     }
   };
 
+  const applyFilters = (search, range) => {
+    const filtered = properties.filter((property) => {
+      const matchesSearch =
+        property.name.toLowerCase().includes(search.toLowerCase()) ||
+        property.address.toLowerCase().includes(search.toLowerCase());
+      const matchesRent =
+        property.rentAmount >= range.min && property.rentAmount <= range.max;
+      return matchesSearch && matchesRent;
+    });
+    setFilteredProperties(filtered);
+  };
+
+  const handleSearch = (e) => {
+    const term = e.target.value.toLowerCase();
+    setSearchTerm(term);
+    applyFilters(term, rentRange);
+  };
+
+  const handleRentChange = (e) => {
+    const { name, value } = e.target;
+    const newRange = { ...rentRange, [name]: Number(value) };
+    setRentRange(newRange);
+    applyFilters(searchTerm, newRange);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!formData.name || !formData.address || !formData.rentAmount) {
-      toast.error('Name, address, and rent amount are required.');
-      return;
-    }
-
     try {
       const response = await fetch('http://localhost:8080/api/properties', {
         method: 'POST',
@@ -48,6 +71,7 @@ function AdminPanel() {
       if (response.ok) {
         const newProperty = await response.json();
         setProperties([...properties, newProperty]);
+        setFilteredProperties([...filteredProperties, newProperty]); // Update filtered list
         setFormData({ name: '', address: '', rentAmount: '', propertyLink: '', imageUrl: '' });
         toast.success('Property added successfully!');
       } else {
@@ -65,7 +89,9 @@ function AdminPanel() {
       try {
         const response = await fetch(`http://localhost:8080/api/properties/${id}`, { method: 'DELETE' });
         if (response.ok) {
-          setProperties(properties.filter((property) => property.id !== id));
+          const updatedProperties = properties.filter((property) => property.id !== id);
+          setProperties(updatedProperties);
+          setFilteredProperties(updatedProperties); // Update filtered list
           toast.success('Property deleted successfully.');
         } else {
           toast.error('Failed to delete property.');
@@ -82,9 +108,51 @@ function AdminPanel() {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleResetFilters = () => {
+    setSearchTerm('');
+    setRentRange({ min: 0, max: 10000 });
+    setFilteredProperties(properties); // Reset to all properties
+  };
+
   return (
     <div>
       <h2>Admin Panel</h2>
+
+      {/* Filters */}
+      <div>
+        <h3>Filters</h3>
+        <input
+          type="text"
+          placeholder="Search by property name or address"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+        <div>
+          <label>
+            Min Rent:
+            <input
+              type="number"
+              name="min"
+              value={rentRange.min}
+              onChange={handleRentChange}
+              style={{ width: '80px', marginLeft: '10px' }}
+            />
+          </label>
+          <label style={{ marginLeft: '20px' }}>
+            Max Rent:
+            <input
+              type="number"
+              name="max"
+              value={rentRange.max}
+              onChange={handleRentChange}
+              style={{ width: '80px', marginLeft: '10px' }}
+            />
+          </label>
+        </div>
+        <button onClick={handleResetFilters} style={{ marginTop: '10px' }}>Reset Filters</button>
+      </div>
+
+      {/* Add Property */}
       <h3>Add Property</h3>
       <form onSubmit={handleSubmit}>
         <input
@@ -128,26 +196,17 @@ function AdminPanel() {
         <button type="submit">Add Property</button>
       </form>
 
+      {/* Existing Properties */}
       <h3>Existing Properties</h3>
-      {properties.length > 0 ? (
+      {filteredProperties.length > 0 ? (
         <ul>
-          {properties.map((property) => (
+          {filteredProperties.map((property) => (
             <li key={property.id}>
               <p><strong>{property.name}</strong></p>
               <p>{property.address}</p>
               <p>Rent: ${property.rentAmount}</p>
-              {property.imageUrl && (
-                <img
-                  src={property.imageUrl}
-                  alt={property.name}
-                  style={{ width: '150px', height: '100px', objectFit: 'cover' }}
-                />
-              )}
-              {property.propertyLink && (
-                <a href={property.propertyLink} target="_blank" rel="noopener noreferrer">
-                  View Listing
-                </a>
-              )}
+              <img src={property.imageUrl} alt={property.name} style={{ width: '100px' }} />
+              <a href={property.propertyLink} target="_blank" rel="noopener noreferrer">View Listing</a>
               <button onClick={() => handleDelete(property.id)}>Delete</button>
             </li>
           ))}
