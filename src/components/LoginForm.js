@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import "../styles/RegisterForm.css"; // Reuse the register form CSS
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState('');
@@ -33,25 +34,30 @@ function LoginForm({ onLogin }) {
   };
 
   return (
-    <form onSubmit={handleLogin}>
+    <div className="register-container"> {/* Reuse the container class */}
       <h2>Tenant Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
+      <p className="form-instructions">
+        Log in to access your tenant dashboard, submit maintenance requests, and view lease details.
+      </p>
+      {error && <p className="error-message">{error}</p>}
+      <form onSubmit={handleLogin}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 }
 

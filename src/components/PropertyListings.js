@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import "../styles/PropertyListings.css";
 
 function PropertyListings() {
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [rentRange, setRentRange] = useState({ min: 0, max: 10000 });
-  const [currentPage, setCurrentPage] = useState(1); // Pagination current page
-  const itemsPerPage = 5; // Number of properties per page
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20; // 4 rows x 5 items
 
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/properties');
+        const response = await fetch("http://localhost:8080/api/properties");
         if (!response.ok) {
-          throw new Error('Failed to fetch properties');
+          throw new Error("Failed to fetch properties");
         }
         const data = await response.json();
         setProperties(data);
-        setFilteredProperties(data); // Initialize filtered list
+        setFilteredProperties(data);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -40,7 +41,7 @@ function PropertyListings() {
       return matchesSearch && matchesRent;
     });
     setFilteredProperties(filtered);
-    setCurrentPage(1); // Reset to first page when filters change
+    setCurrentPage(1);
   };
 
   const handleSearch = (e) => {
@@ -57,13 +58,12 @@ function PropertyListings() {
   };
 
   const handleResetFilters = () => {
-    setSearchTerm('');
+    setSearchTerm("");
     setRentRange({ min: 0, max: 10000 });
     setFilteredProperties(properties);
     setCurrentPage(1);
   };
 
-  // Pagination Logic
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentProperties = filteredProperties.slice(indexOfFirstItem, indexOfLastItem);
@@ -72,22 +72,22 @@ function PropertyListings() {
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
 
   if (loading) return <p>Loading properties...</p>;
-  if (error) return <p style={{ color: 'red' }}>{error}</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
-    <div>
-      <h2>Available Properties</h2>
+    <div className="properties-container">
+      <h1>Featured Properties</h1>
 
       {/* Filters */}
-      <div>
-        <h3>Filters</h3>
+      <div className="filters-container">
         <input
           type="text"
           placeholder="Search by property name or address"
           value={searchTerm}
           onChange={handleSearch}
+          className="search-bar"
         />
-        <div>
+        <div className="rent-filters">
           <label>
             Min Rent:
             <input
@@ -95,61 +95,93 @@ function PropertyListings() {
               name="min"
               value={rentRange.min}
               onChange={handleRentChange}
-              style={{ width: '80px', marginLeft: '10px' }}
+              className="rent-input"
             />
           </label>
-          <label style={{ marginLeft: '20px' }}>
+          <label>
             Max Rent:
             <input
               type="number"
               name="max"
               value={rentRange.max}
               onChange={handleRentChange}
-              style={{ width: '80px', marginLeft: '10px' }}
+              className="rent-input"
             />
           </label>
         </div>
-        <button onClick={handleResetFilters} style={{ marginTop: '10px' }}>Reset Filters</button>
+        <button onClick={handleResetFilters} className="reset-button">
+          Reset Filters
+        </button>
       </div>
 
       {/* Property Listings */}
       {currentProperties.length > 0 ? (
-        <div className="property-list">
+        <div className="properties-grid">
           {currentProperties.map((property) => (
-            <div key={property.id} className="property-item">
-              <h3>{property.name}</h3>
-              <p>Address: {property.address}</p>
-              <p>Rent Amount: ${property.rentAmount}</p>
-              <img src={property.imageUrl} alt={property.name} style={{ width: '100px' }} />
-              <a href={property.propertyLink} target="_blank" rel="noopener noreferrer">View Listing</a>
+            <div key={property.id} className="property-card">
+              <img
+                src={property.imageUrl}
+                alt={property.name}
+                className="property-image"
+              />
+              <div className="property-details">
+                <h2 className="property-name">{property.name}</h2>
+                <p className="property-address">{property.address}</p>
+                <p className="property-rent">Rent: ${property.rentAmount}</p>
+                <a
+                  href={property.propertyLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="property-link"
+                >
+                  View Listing
+                </a>
+              </div>
             </div>
           ))}
         </div>
       ) : (
-        <p>No properties found.</p>
+        <p className="no-properties">No properties found.</p>
       )}
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div style={{ marginTop: '20px' }}>
+        <div className="pagination">
           {Array.from({ length: totalPages }, (_, index) => (
             <button
               key={index}
               onClick={() => handlePageChange(index + 1)}
-              style={{
-                margin: '0 5px',
-                padding: '5px 10px',
-                backgroundColor: currentPage === index + 1 ? '#007BFF' : '#f0f0f0',
-                color: currentPage === index + 1 ? '#fff' : '#000',
-                border: 'none',
-                cursor: 'pointer',
-              }}
+              className={`pagination-button ${
+                currentPage === index + 1 ? "active" : ""
+              }`}
             >
               {index + 1}
             </button>
           ))}
         </div>
       )}
+
+      {/* Footer Section */}
+      <footer className="footer">
+        <div className="footer-container">
+          <div className="footer-left">
+            <h4>YourLogo</h4>
+            <p>Your Address Here, Suite Here</p>
+            <p>Philadelphia, PA Zip Code Here</p>
+            <p>Email: info@yourbusiness.com</p>
+            <p>Phone: (555) 555-5555</p>
+          </div>
+          <div className="footer-right">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="/about">About</a></li>
+              <li><a href="/properties">Featured Properties</a></li>
+              <li><a href="/login">Tenants</a></li>
+              <li><a href="/register">Register</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
