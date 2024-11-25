@@ -1,49 +1,140 @@
-/* AdminPanel.css */
 .admin-panel {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-}
-
-.filters, .add-property-form {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Add Property Form */
+  .add-property {
+    margin-bottom: 30px;
+  }
+  
+  .add-property h3 {
     margin-bottom: 20px;
-}
-
-.filters input, .filters label {
-    margin: 5px;
-}
-
-.property-list ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.property-list li {
+    font-size: 1.5rem;
+  }
+  
+  .add-property form {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 15px; /* Increased spacing between inputs */
+  }
+  
+  .add-property input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.property-list li img {
-    max-width: 100px;
-    height: auto;
+  }
+  
+  .add-property button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
     border-radius: 5px;
-}
-
-.property-list li button {
-    margin-left: 10px;
-}
-
-@media (max-width: 768px) {
-    .property-list li {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .property-list li img {
-        margin-bottom: 10px;
-    }
-}
+    cursor: pointer;
+  }
+  
+  .add-property button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Property List */
+  .property-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .property-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+  }
+  
+  .property-list li img {
+    max-width: 80px;
+    max-height: 80px; /* Added max-height for better consistency */
+    border-radius: 5px;
+    margin-right: 20px; /* Added margin between the image and the text */
+  }
+  
+  .property-list .buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .view-listing {
+    background-color: #17a2b8;
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .view-listing:hover {
+    background-color: #138496;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .delete-button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Maintenance Requests */
+  .maintenance-requests {
+    margin-top: 40px;
+  }
+  
+  .maintenance-requests h3 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+  }
+  
+  .maintenance-requests ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .maintenance-requests li {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+  }
+  
+  .maintenance-requests li p {
+    margin: 5px 0;
+  }
+  
+  .maintenance-requests select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  /* General */
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }

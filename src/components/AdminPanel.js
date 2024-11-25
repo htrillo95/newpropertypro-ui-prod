@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-
 import '../styles/AdminPanel.css';
 
 function AdminPanel() {
@@ -92,9 +91,10 @@ function AdminPanel() {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/maintenance-request/${id}/status?status=${newStatus}`, {
-        method: 'PUT',
-      });
+      const response = await fetch(
+        `http://localhost:8080/api/maintenance-request/${id}/status?status=${newStatus}`,
+        { method: 'PUT' }
+      );
 
       if (response.ok) {
         setMaintenanceRequests((prevRequests) =>
@@ -118,94 +118,108 @@ function AdminPanel() {
   };
 
   return (
-    <div>
+    <div className="admin-panel">
       <h2>Admin Panel</h2>
 
-      {/* Add Property */}
-      <h3>Add Property</h3>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleInputChange}
-          placeholder="Property Name"
-          required
-        />
-        <input
-          type="text"
-          name="address"
-          value={formData.address}
-          onChange={handleInputChange}
-          placeholder="Address"
-          required
-        />
-        <input
-          type="number"
-          name="rentAmount"
-          value={formData.rentAmount}
-          onChange={handleInputChange}
-          placeholder="Rent Amount"
-          required
-        />
-        <input
-          type="url"
-          name="propertyLink"
-          value={formData.propertyLink}
-          onChange={handleInputChange}
-          placeholder="Property Link"
-        />
-        <input
-          type="url"
-          name="imageUrl"
-          value={formData.imageUrl}
-          onChange={handleInputChange}
-          placeholder="Image URL"
-        />
-        <button type="submit">Add Property</button>
-      </form>
+      {/* Add Property Section */}
+      <section className="add-property">
+        <h3>Add Property</h3>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            placeholder="Property Name"
+            required
+          />
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleInputChange}
+            placeholder="Address"
+            required
+          />
+          <input
+            type="number"
+            name="rentAmount"
+            value={formData.rentAmount}
+            onChange={handleInputChange}
+            placeholder="Rent Amount"
+            required
+          />
+          <input
+            type="url"
+            name="propertyLink"
+            value={formData.propertyLink}
+            onChange={handleInputChange}
+            placeholder="Property Link"
+          />
+          <input
+            type="url"
+            name="imageUrl"
+            value={formData.imageUrl}
+            onChange={handleInputChange}
+            placeholder="Image URL"
+          />
+          <button type="submit">Add Property</button>
+        </form>
+      </section>
 
-      {/* Properties */}
-      <h3>Existing Properties</h3>
-      {properties.length > 0 ? (
-        <ul>
-          {properties.map((property) => (
-            <li key={property.id}>
-              <p><strong>{property.name}</strong></p>
-              <p>{property.address}</p>
-              <p>Rent: ${property.rentAmount}</p>
-              <img src={property.imageUrl} alt={property.name} style={{ width: '100px' }} />
-              <a href={property.propertyLink} target="_blank" rel="noopener noreferrer">View Listing</a>
-              <button onClick={() => handleDelete(property.id)}>Delete</button>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No properties found.</p>
-      )}
+      {/* Existing Properties Section */}
+      <section className="property-list">
+        <h3>Existing Properties</h3>
+        {properties.length > 0 ? (
+          <ul>
+            {properties.map((property) => (
+              <li key={property.id}>
+                <div>
+                  <p><strong>{property.name}</strong></p>
+                  <p>{property.address}</p>
+                  <p>Rent: ${property.rentAmount}</p>
+                </div>
+                <img src={property.imageUrl} alt={property.name} />
+                <div className="buttons">
+                  <a href={property.propertyLink} target="_blank" rel="noopener noreferrer" className="view-listing">
+                    View Listing
+                  </a>
+                  <button className="delete-button" onClick={() => handleDelete(property.id)}>
+                    Delete
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No properties found.</p>
+        )}
+      </section>
 
-      {/* Maintenance Requests */}
-      <h3>Maintenance Requests</h3>
-      {maintenanceRequests.length > 0 ? (
-        <ul>
-          {maintenanceRequests.map((request) => (
-            <li key={request.id}>
-              <p><strong>Description:</strong> {request.description}</p>
-              <p><strong>Status:</strong> {request.status}</p>
-              <select
-                value={request.status}
-                onChange={(e) => handleStatusChange(request.id, e.target.value)}
-              >
-                <option value="Pending">Pending</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Resolved">Resolved</option>
-              </select>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No maintenance requests found.</p>
-      )}
+      {/* Maintenance Requests Section */}
+      <section className="maintenance-requests">
+        <h3>Maintenance Requests</h3>
+        {maintenanceRequests.length > 0 ? (
+          <ul>
+            {maintenanceRequests.map((request) => (
+              <li key={request.id}>
+                <p><strong>Description:</strong> {request.description}</p>
+                <p><strong>Status:</strong> {request.status}</p>
+                <select
+                  value={request.status}
+                  onChange={(e) => handleStatusChange(request.id, e.target.value)}
+                >
+                  <option value="Pending">Pending</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Resolved">Resolved</option>
+                </select>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No maintenance requests found.</p>
+        )}
+      </section>
     </div>
   );
 }
