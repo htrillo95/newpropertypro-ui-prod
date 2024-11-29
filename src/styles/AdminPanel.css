@@ -3,50 +3,98 @@
     max-width: 1200px;
     margin: 0 auto;
     font-family: Arial, sans-serif;
-  }
-  
-  /* Add Property Form */
-  .add-property {
+}
+
+/* Add Property Form */
+.add-property {
     margin-bottom: 30px;
-  }
-  
-  .add-property h3 {
+}
+
+.add-property h3 {
     margin-bottom: 20px;
     font-size: 1.5rem;
-  }
-  
-  .add-property form {
+}
+
+.add-property form {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Increased spacing between inputs */
-  }
-  
-  .add-property input {
+    gap: 15px;
+}
+
+.add-property input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-  }
-  
-  .add-property button {
+}
+
+.add-property button {
     background-color: #007bff;
     color: #fff;
     border: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .add-property button:hover {
+}
+
+.add-property button:hover {
     background-color: #0056b3;
-  }
-  
-  /* Property List */
-  .property-list ul {
+}
+
+/* Edit Property Section */
+.edit-property {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+
+.edit-property h3 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.edit-property form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.edit-property input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.edit-property button {
+    background-color: #28a745; /* Green for save changes */
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.edit-property button:hover {
+    background-color: #218838; /* Darker green */
+}
+
+.edit-property button[type="button"] {
+    background-color: #dc3545; /* Red for cancel */
+}
+
+.edit-property button[type="button"]:hover {
+    background-color: #c82333; /* Darker red */
+}
+
+/* Property List */
+.property-list ul {
     list-style-type: none;
     padding: 0;
-  }
-  
-  .property-list li {
+}
+
+.property-list li {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,86 +103,114 @@
     border-radius: 5px;
     margin-bottom: 15px;
     background-color: #f9f9f9;
-  }
-  
-  .property-list li img {
+}
+
+.property-list li img {
     max-width: 80px;
-    max-height: 80px; /* Added max-height for better consistency */
+    max-height: 80px;
     border-radius: 5px;
-    margin-right: 20px; /* Added margin between the image and the text */
-  }
-  
-  .property-list .buttons {
+    margin-right: 20px;
+}
+
+.property-list .buttons {
     display: flex;
     gap: 10px;
-  }
-  
-  .view-listing {
+}
+
+.view-listing {
     background-color: #17a2b8;
     color: #fff;
     text-decoration: none;
     padding: 5px 10px;
     border-radius: 5px;
-  }
-  
-  .view-listing:hover {
+}
+
+.view-listing:hover {
     background-color: #138496;
-  }
-  
-  .delete-button {
+}
+
+/* Edit Button */
+.edit-button {
+    background-color: #ffc107; /* Yellow */
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    background-color: #e0a800; /* Darker yellow */
+}
+
+/* Delete Button */
+.delete-button {
     background-color: #dc3545;
     color: #fff;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .delete-button:hover {
+}
+
+.delete-button:hover {
     background-color: #c82333;
-  }
-  
-  /* Maintenance Requests */
-  .maintenance-requests {
+}
+
+/* Maintenance Requests */
+.maintenance-requests {
     margin-top: 40px;
-  }
-  
-  .maintenance-requests h3 {
+}
+
+.maintenance-requests h3 {
     margin-bottom: 20px;
     font-size: 1.5rem;
-  }
-  
-  .maintenance-requests ul {
+}
+
+.maintenance-requests ul {
     list-style-type: none;
     padding: 0;
-  }
-  
-  .maintenance-requests li {
+}
+
+.maintenance-requests li {
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 15px;
     background-color: #f9f9f9;
-  }
-  
-  .maintenance-requests li p {
+}
+
+.maintenance-requests li p {
     margin: 5px 0;
-  }
-  
-  .maintenance-requests select {
+}
+
+.maintenance-requests select {
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
-  }
-  
-  /* General */
-  h2 {
+}
+
+/* General */
+h2 {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 20px;
-  }
-  
-  h3 {
+}
+
+h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
-  }
+}
+
+/* Status Colors */
+.status.pending {
+    color: #ffc107; /* Yellow */
+}
+
+.status.in-progress {
+    color: #17a2b8; /* Blue */
+}
+
+.status.resolved {
+    color: #28a745; /* Green */
+}

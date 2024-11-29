@@ -5,6 +5,8 @@ import '../styles/TenantDashboard.css';
 
 function TenantDashboard() {
   const [issueDescription, setIssueDescription] = useState('');
+  const [tenantName, setTenantName] = useState(''); // New field for tenant name
+  const [leasingInfo, setLeasingInfo] = useState(''); // New field for leasing info
   const [maintenanceRequests, setMaintenanceRequests] = useState([]);
 
   useEffect(() => {
@@ -35,8 +37,8 @@ function TenantDashboard() {
   const handleMaintenanceRequestSubmit = async (e) => {
     e.preventDefault();
 
-    if (!issueDescription.trim()) {
-      toast.error('Description cannot be empty.');
+    if (!issueDescription.trim() || !tenantName.trim() || !leasingInfo.trim()) {
+      toast.error('All fields are required.');
       return;
     }
 
@@ -55,13 +57,20 @@ function TenantDashboard() {
       const response = await fetch('http://localhost:8080/api/maintenance-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ description: issueDescription, tenantId }),
+        body: JSON.stringify({
+          description: issueDescription,
+          tenantId,
+          submittedBy: tenantName,
+          leasingInfo,
+        }),
       });
 
       if (response.ok) {
         const newRequest = await response.json();
         setMaintenanceRequests([...maintenanceRequests, newRequest]);
         setIssueDescription('');
+        setTenantName('');
+        setLeasingInfo('');
         toast.success('Maintenance request submitted successfully!');
       } else {
         toast.error('Failed to submit maintenance request.');
@@ -81,6 +90,24 @@ function TenantDashboard() {
       <section className="submit-form-section">
         <h2>Submit Maintenance Request</h2>
         <form onSubmit={handleMaintenanceRequestSubmit}>
+          <input
+            type="text"
+            value={tenantName}
+            onChange={(e) => setTenantName(e.target.value)}
+            placeholder="Your Name"
+            maxLength="50"
+            required
+            className="input-field"
+          />
+          <input
+            type="text"
+            value={leasingInfo}
+            onChange={(e) => setLeasingInfo(e.target.value)}
+            placeholder="Leasing Info (e.g., Apartment 101)"
+            maxLength="100"
+            required
+            className="input-field"
+          />
           <textarea
             value={issueDescription}
             onChange={(e) => setIssueDescription(e.target.value)}

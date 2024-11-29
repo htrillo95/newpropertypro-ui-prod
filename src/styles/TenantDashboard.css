@@ -118,6 +118,17 @@
     color: #28a745; /* Green for Resolved */
 }
 
+/* New Styling for Additional Input Fields */
+.input-field {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .requests-list {

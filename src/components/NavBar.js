@@ -14,11 +14,10 @@ function NavBar({ role, handleLogout }) {
             <div className="nav-links">
                 <Link to="/">Home</Link>
                 <Link to="/properties">Properties</Link>
-
                 {role === '' && (
                     <>
-                        <Link to="/login" className="login-btn">Tenant</Link>
-                        <Link to="/admin-login" className="login-btn">Admin</Link>
+                        <Link to="/login">Tenant</Link>
+                        <Link to="/admin-login">Admin</Link>
                     </>
                 )}
                 {role === 'tenant' && (

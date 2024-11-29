@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import HomePage from './components/HomePage';
+import HomePage from './components/HomePage'; // Ensure correct path
+import AboutPage from './components/AboutPage'; // Updated import
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import TenantDashboard from './components/TenantDashboard';
@@ -34,6 +35,7 @@ function App() {
         <NavBar role={role} handleLogout={handleLogout} />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} /> {/* Updated route */}
           <Route
             path="/login"
             element={

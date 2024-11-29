@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link for routing
 import "../styles/HomePage.css";
 
 function HomePage() {
@@ -69,10 +70,10 @@ function HomePage() {
           <div className="footer-right">
             <h4>Explore</h4>
             <ul>
-              <li><a href="/about">About</a></li>
-              <li><a href="/properties">Featured Properties</a></li>
-              <li><a href="/login">Tenants</a></li>
-              <li><a href="/register">Register</a></li>
+              <li><Link to="/about">About</Link></li> {/* Updated to Link */}
+              <li><Link to="/properties">Featured Properties</Link></li>
+              <li><Link to="/login">Tenants</Link></li>
+              <li><Link to="/register">Register</Link></li>
             </ul>
           </div>
         </div>
