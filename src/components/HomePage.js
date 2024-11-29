@@ -13,7 +13,6 @@ function HomePage() {
             Expertly managing residential and commercial properties with care
             and precision.
           </p>
-          <button className="cta-button">Get Started</button>
         </div>
       </section>
 

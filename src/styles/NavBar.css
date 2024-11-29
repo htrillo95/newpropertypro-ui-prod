@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 8px 20px;
     background-color: #fff;
     border-bottom: 1px solid #ddd;
     position: sticky;
@@ -57,4 +57,18 @@
 
 .navbar button:hover {
     background-color: #0056b3;
+}
+
+/* Add this below the existing .navbar styles */
+.navbar .logo-image {
+    height: 30px; /* Adjust as needed */
+    width: auto; /* Keep aspect ratio */
+    margin-right: 10px; /* Space between logo and text links */
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .navbar .logo-image {
+        height: 30px; /* Adjust for smaller screens */
+    }
 }
