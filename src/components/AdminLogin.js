@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Footer from './Footer'; // Import the Footer component
 import "../styles/RegisterForm.css"; // Reuse the register form CSS
 
 function AdminLogin({ onLogin }) {
@@ -27,30 +28,37 @@ function AdminLogin({ onLogin }) {
   };
 
   return (
-    <div className="register-container"> {/* Reuse the container class */}
-      <h2>Admin Login</h2>
-      <p className="form-instructions">
-        Log in with your administrator account to manage properties, tenant requests, and more.
-      </p>
-      {error && <p className="error-message">{error}</p>}
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          placeholder="Admin Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Admin Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <>
+      <div className="register-container">
+        <h2>Admin Login</h2>
+        <p className="form-instructions">
+          Log in with your administrator account to manage properties, tenant requests, and more.
+        </p>
+        {error && <p className="error-message">{error}</p>}
+        <form onSubmit={handleLogin}>
+          <input
+            type="text"
+            placeholder="Admin Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Admin Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+
+      {/* Blank Spacer */}
+      <div style={{ height: "200px" }}></div>
+
+      <Footer />
+    </>
   );
 }
 
