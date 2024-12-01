@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/PropertyListings.css";
+import logoIcon from '../assets/images/LogoCopy.png';
 
 function PropertyListings() {
   const [properties, setProperties] = useState([]);
@@ -9,7 +10,7 @@ function PropertyListings() {
   const [searchTerm, setSearchTerm] = useState("");
   const [rentRange, setRentRange] = useState({ min: 0, max: 10000 });
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20; // 4 rows x 5 items
+  const itemsPerPage = 20;
 
   useEffect(() => {
     const fetchProperties = async () => {
@@ -163,11 +164,16 @@ function PropertyListings() {
         )}
       </div>
 
+      {/* Footer Section */}
       <footer className="footer">
         <div className="footer-container">
           {/* Left Section */}
           <div className="footer-left">
-            <h4>YourLogo</h4>
+            <img
+              src={logoIcon}
+              alt="Trillo RE Icon"
+              className="footer-logo"
+            />
             <p>Your Address Here, Suite Here</p>
             <p>Philadelphia, PA Zip Code Here</p>
             <p>Email: info@yourbusiness.com</p>
@@ -176,7 +182,9 @@ function PropertyListings() {
 
           {/* Right Section */}
           <div className="footer-right">
+            <p></p>
             <h4>Explore</h4>
+            <p></p>
             <ul>
               <li><a href="/about" className="text-white">About</a></li>
               <li><a href="/properties" className="text-white">Featured Properties</a></li>

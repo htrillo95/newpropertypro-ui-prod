@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/AboutPage.css';
+import logoIcon from '../assets/images/LogoCopy.png';
 
 function AboutPage() {
     return (
@@ -62,12 +64,16 @@ function AboutPage() {
                 </div>
             </section>
 
-            {/* Footer Section - Reused from Home Page */}
+            {/* Footer Section */}
             <footer className="footer">
                 <div className="footer-container">
                     {/* Left Section: Logo and Contact */}
                     <div className="footer-left">
-                        <h4>YourLogo</h4>
+                        <img
+                            src={logoIcon}
+                            alt="Trillo RE Icon"
+                            className="footer-logo"
+                        />
                         <p>Your Address Here, Suite Here</p>
                         <p>Philadelphia, PA Zip Code Here</p>
                         <p>Email: info@yourbusiness.com</p>
@@ -76,12 +82,14 @@ function AboutPage() {
 
                     {/* Right Section: Navigation Links */}
                     <div className="footer-right">
+                        <p></p>
                         <h4>Explore</h4>
+                        <p></p>
                         <ul>
-                            <li><a href="/about">About</a></li>
-                            <li><a href="/properties">Featured Properties</a></li>
-                            <li><a href="/login">Tenants</a></li>
-                            <li><a href="/register">Register</a></li>
+                            <li><Link to="/about">About</Link></li>
+                            <li><Link to="/properties">Featured Properties</Link></li>
+                            <li><Link to="/login">Tenants</Link></li>
+                            <li><Link to="/register">Register</Link></li>
                         </ul>
                     </div>
                 </div>

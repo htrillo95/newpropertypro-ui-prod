@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link for routing
 import "../styles/HomePage.css";
+import logoIcon from '../assets/images/LogoCopy.png';
 
 function HomePage() {
   return (
@@ -13,6 +14,7 @@ function HomePage() {
             Expertly managing residential and commercial properties with care
             and precision.
           </p>
+          <button className="cta-button">Get Started</button>
         </div>
       </section>
 
@@ -58,7 +60,11 @@ function HomePage() {
         <div className="footer-container">
           {/* Left Section: Logo and Contact */}
           <div className="footer-left">
-            <h4>YourLogo</h4>
+            <img
+                src={logoIcon}
+                alt="Trillo RE Icon"
+                className="footer-logo"
+            />
             <p>Your Address Here, Suite Here</p>
             <p>Philadelphia, PA Zip Code Here</p>
             <p>Email: info@yourbusiness.com</p>
@@ -67,7 +73,9 @@ function HomePage() {
 
           {/* Right Section: Navigation Links */}
           <div className="footer-right">
+            <p></p>
             <h4>Explore</h4>
+            <p></p>
             <ul>
               <li><Link to="/about">About</Link></li> {/* Updated to Link */}
               <li><Link to="/properties">Featured Properties</Link></li>

@@ -181,6 +181,13 @@ p {
     color: #007bff;
 }
 
+/* Footer Logo Styling */
+.footer-logo {
+    height: 35px; /* Adjust height for appropriate size */
+    width: auto; /* Maintain aspect ratio */
+    margin-bottom: 15px; /* Add spacing below the logo */
+}
+
 /* Responsive Design for Mobile */
 @media (max-width: 768px) {
     .footer-container {
