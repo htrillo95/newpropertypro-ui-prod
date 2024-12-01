@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Footer from './Footer'; // Import the Footer component
 import "../styles/RegisterForm.css"; // Reuse the register form CSS
+import logoIcon from '../assets/images/LogoCopy.png'; // Import the logo
 
 function AdminLogin({ onLogin }) {
   const [username, setUsername] = useState('');
@@ -53,11 +53,38 @@ function AdminLogin({ onLogin }) {
           <button type="submit">Login</button>
         </form>
       </div>
+      <div style={{ height: "160px" }}></div>
 
-      {/* Blank Spacer */}
-      <div style={{ height: "200px" }}></div>
+      {/* Footer Section */}
+      <footer className="footer">
+        <div className="footer-container">
+          {/* Left Section: Logo and Contact */}
+          <div className="footer-left">
+            <img
+              src={logoIcon}
+              alt="Trillo RE Icon"
+              className="footer-logo"
+            />
+            <p>P.O Box 3612</p>
+            <p>Philadelphia, PA 19125</p>
+            <p>Email: TrilloMGMT@gmail.com</p>
+            <p>Phone: (215) 989-5411</p>
+          </div>
 
-      <Footer />
+          {/* Right Section: Navigation Links */}
+          <div className="footer-right">
+            <p></p> {/* Extra spacing */}
+            <h4>Explore</h4>
+            <p></p> {/* Extra spacing */}
+            <ul>
+              <li><a href="/about">About</a></li>
+              <li><a href="/properties">Featured Properties</a></li>
+              <li><a href="/login">Tenants</a></li>
+              <li><a href="/register">Register</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }

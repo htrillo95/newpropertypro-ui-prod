@@ -118,6 +118,79 @@ p {
     margin-bottom: 15px;
 }
 
+/* Testimonials Section */
+.testimonials-section {
+    padding-top: 2px; /* Spacing at the top */
+    padding-bottom: 50px; /* Add spacing at the bottom */
+    background-color: #f8f9fa;
+}
+
+.testimonials-section h2 {
+    font-size: 1.8rem; /* Match the font size of other headers */
+    color: #333; /* Match the color */
+    margin-top: 40px; /* Add spacing above the header */
+    margin-bottom: 20px; /* Add spacing below the header */
+    text-align: center; /* Keep it centered */
+    font-weight: normal; /* Ensure it’s not overly bold */
+}
+
+.testimonials-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+    flex-wrap: wrap; /* Ensure responsiveness for smaller screens */
+}
+
+.featured-review {
+    flex: 1; /* Equal width for left side */
+    max-width: 45%; /* Constrain width */
+    font-style: italic;
+    color: #555;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    text-align: left;
+}
+
+.short-reviews {
+    flex: 1; /* Equal width for right side */
+    max-width: 45%; /* Constrain width */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between the stacked reviews */
+}
+
+.review-card {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    font-style: italic;
+    color: #555;
+    text-align: left;
+}
+
+.testimonial-author {
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: right;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .testimonials-container {
+        flex-direction: column; /* Stack columns on smaller screens */
+    }
+
+    .featured-review,
+    .short-reviews {
+        flex: 1; /* Equal width for stacked layout */
+        max-width: 100%; /* Ensure full width on smaller screens */
+    }
+}
+
 /* Footer Section */
 .footer {
     background-color: #333;

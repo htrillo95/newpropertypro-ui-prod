@@ -174,10 +174,10 @@ function PropertyListings() {
               alt="Trillo RE Icon"
               className="footer-logo"
             />
-            <p>Your Address Here, Suite Here</p>
-            <p>Philadelphia, PA Zip Code Here</p>
-            <p>Email: info@yourbusiness.com</p>
-            <p>Phone: (555) 555-5555</p>
+            <p>P.O Box 3612</p>
+            <p>Philadelphia, PA 19125</p>
+            <p>Email: TrilloMGMT@gmail.com</p>
+            <p>Phone: (215) 989-5411</p>
           </div>
 
           {/* Right Section */}

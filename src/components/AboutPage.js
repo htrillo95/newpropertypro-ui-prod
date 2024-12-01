@@ -10,11 +10,10 @@ function AboutPage() {
             {/* About Page Hero Section */}
             <section className="about-hero-section text-center py-5 bg-light">
                 <div className="container">
-                    <h1 className="display-4">About PropertyPro</h1>
+                    <h1 className="display-4">More About Us</h1>
                     <p className="lead">
-                        At PropertyPro, we’re committed to simplifying property management and
-                        building stronger relationships between landlords and tenants. Learn more about our
-                        mission, vision, and the people who make it happen.
+                        At Trillo RE, we go beyond property management. Our commitment lies in fostering strong relationships, 
+                            enhancing property value, and providing unparalleled tenant satisfaction. Explore our story and see how we’re reshaping the property management experience.
                     </p>
                 </div>
             </section>
@@ -33,16 +32,16 @@ function AboutPage() {
                         </div>
                         {/* Profile Details */}
                         <div className="col-md-8">
-                            <h3 className="mt-3">Maria Gomez</h3>
+                            <h3 className="mt-3">Lisa Trillo</h3>
                             <p>
-                                Founder & CEO of PropertyPro. With over a decade of experience in real estate,
-                                Maria is passionate about providing exceptional property management services for
-                                landlords and tenants alike.
+                                Founder, brings over a decade of expertise in real estate to the table.
+                                Her dedication to client care and attention to detail has earned her a reputation for excellence, as reflected
+                                in glowing testimonials from satisfied clients.
                             </p>
                             <p>
-                                Maria believes in creating a seamless experience for property owners and tenants.
-                                Her mission is to empower landlords with tools that enhance property value while
-                                ensuring tenant satisfaction.
+                                From seamless lease management to proactive maintenance, Maria has always believed that exceptional service
+                                starts with understanding the unique needs of landlords and tenants. Her vision is simple: 
+                                create stress-free, efficient property management solutions that elevate the experience for everyone involved.
                             </p>
                         </div>
                     </div>
@@ -54,12 +53,12 @@ function AboutPage() {
                 <div className="container text-center">
                     <h2>Our Mission & Vision</h2>
                     <p>
-                        To revolutionize property management with cutting-edge technology and exceptional
-                        service, fostering trust and satisfaction between landlords and tenants.
+                        To provide landlords and tenants with peace of mind through innovative solutions and exceptional service. 
+                        We believe in a future where property management is effortless, transparent, and trusted by all.
                     </p>
                     <p>
-                        By integrating modern technology with personalized service, PropertyPro aims to set
-                        a new standard in property management excellence.
+                      Our vision is to empower property owners to maximize the value of their investments while creating a positive and supportive experience for tenants. 
+                        By blending cutting-edge technology with a personalized approach, we’re setting a new standard for excellence in the industry.
                     </p>
                 </div>
             </section>
@@ -74,11 +73,11 @@ function AboutPage() {
                             alt="Trillo RE Icon"
                             className="footer-logo"
                         />
-                        <p>Your Address Here, Suite Here</p>
-                        <p>Philadelphia, PA Zip Code Here</p>
-                        <p>Email: info@yourbusiness.com</p>
-                        <p>Phone: (555) 555-5555</p>
-                    </div>
+                        <p>P.O Box 3612</p>
+                        <p>Philadelphia, PA 19125</p>
+                        <p>Email: TrilloMGMT@gmail.com</p>
+                        <p>Phone: (215) 989-5411</p>
+                      </div>
 
                     {/* Right Section: Navigation Links */}
                     <div className="footer-right">
