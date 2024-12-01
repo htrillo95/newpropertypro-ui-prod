@@ -25,7 +25,7 @@ function AboutPage() {
                         {/* Profile Picture */}
                         <div className="col-md-4 text-center">
                             <img
-                                src="https://via.placeholder.com/150"
+                                src={require('../assets/images/Lisa.jpg')}
                                 alt="Owner"
                                 className="rounded-circle shadow"
                             />
