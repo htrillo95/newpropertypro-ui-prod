@@ -13,17 +13,17 @@ function AboutPage() {
                     <h1 className="display-4">More About Us</h1>
                     <p className="lead">
                         At Trillo RE, we go beyond property management. Our commitment lies in fostering strong relationships, 
-                            enhancing property value, and providing unparalleled tenant satisfaction. Explore our story and see how we’re reshaping the property management experience.
+                        enhancing property value, and providing unparalleled tenant satisfaction. Explore our story and see how we’re reshaping the property management experience.
                     </p>
                 </div>
             </section>
 
             {/* About Owner Section - Two Column Layout */}
             <section className="owner-section py-5">
-                <div className="container">
+                <div className="container text-center">
                     <div className="row align-items-center">
                         {/* Profile Picture */}
-                        <div className="col-md-4 text-center">
+                        <div className="col-md-12">
                             <img
                                 src={require('../assets/images/Lisa.jpg')}
                                 alt="Owner"
@@ -31,8 +31,8 @@ function AboutPage() {
                             />
                         </div>
                         {/* Profile Details */}
-                        <div className="col-md-8">
-                            <h3 className="mt-3">Lisa Trillo</h3>
+                        <div className="col-md-12 mt-3">
+                            <h3>Lisa Trillo</h3>
                             <p>
                                 Founder, brings over a decade of expertise in real estate to the table.
                                 Her dedication to client care and attention to detail has earned her a reputation for excellence, as reflected
@@ -57,7 +57,7 @@ function AboutPage() {
                         We believe in a future where property management is effortless, transparent, and trusted by all.
                     </p>
                     <p>
-                      Our vision is to empower property owners to maximize the value of their investments while creating a positive and supportive experience for tenants. 
+                        Our vision is to empower property owners to maximize the value of their investments while creating a positive and supportive experience for tenants. 
                         By blending cutting-edge technology with a personalized approach, we’re setting a new standard for excellence in the industry.
                     </p>
                 </div>
@@ -77,7 +77,7 @@ function AboutPage() {
                         <p>Philadelphia, PA 19125</p>
                         <p>Email: TrilloMGMT@gmail.com</p>
                         <p>Phone: (215) 989-5411</p>
-                      </div>
+                    </div>
 
                     {/* Right Section: Navigation Links */}
                     <div className="footer-right">

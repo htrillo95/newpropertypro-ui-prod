@@ -59,3 +59,76 @@
   body {
     background-color: #f5f7fa; /* Soft neutral background color */
   }
+
+  /* Footer Section */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 20px;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Allow stacking on smaller screens */
+  }
+  
+  .footer-left,
+  .footer-right {
+    flex: 1;
+    margin: 0;
+    padding: 0 10px;
+  }
+  
+  .footer-left {
+    text-align: left;
+  }
+  
+  .footer-left img.footer-logo {
+    height: 35px; /* Adjust height for appropriate size */
+    width: auto; /* Maintain aspect ratio */
+    margin-bottom: 15px; /* Add spacing below the logo */
+  }
+  
+  .footer-right {
+    text-align: right; /* Align "Explore" section to the right on desktop */
+  }
+  
+  .footer-right h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .footer-right ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-right li {
+    margin-bottom: 8px;
+  }
+  
+  .footer-right a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-right a:hover {
+    color: #007bff;
+  }
+  
+  /* Responsive Design for Mobile */
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column; /* Stack sections on mobile */
+      align-items: flex-start; /* Align everything to the left */
+    }
+  
+    .footer-left,
+    .footer-right {
+      width: 100%; /* Ensure sections span full width */
+      text-align: left; /* Align both sections to the left */
+    }
+  }
