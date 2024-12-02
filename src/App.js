@@ -11,6 +11,7 @@ import AdminLogin from './components/AdminLogin';
 import AdminPanel from './components/AdminPanel';
 import PropertyListings from './components/PropertyListings';
 import NavBar from './components/NavBar';
+import ScrollToTop from './components/ScrollToTop'; // Update the path based on your folder structure
 
 function App() {
   const [role, setRole] = useState(sessionStorage.getItem('role') || ''); // Track user role
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop /> {/* Add this here to ensure scroll-to-top functionality */}
       <div className="App">
         <ToastContainer /> {/* Enable toast notifications globally */}
         <NavBar role={role} handleLogout={handleLogout} />
