@@ -34,13 +34,13 @@ function AboutPage() {
                         <div className="col-md-12 mt-3">
                             <h3>Lisa Trillo</h3>
                             <p>
-                                Founder, brings over a decade of expertise in real estate to the table.
+                                Founder, Lisa brings over a decade of expertise in real estate to the table.
                                 Her dedication to client care and attention to detail has earned her a reputation for excellence, as reflected
                                 in glowing testimonials from satisfied clients.
                             </p>
                             <p>
-                                From seamless lease management to proactive maintenance, Maria has always believed that exceptional service
-                                starts with understanding the unique needs of landlords and tenants. Her vision is simple: 
+                                From seamless lease management to proactive maintenance, Lisa has always believed that exceptional service
+                                starts with understanding the unique needs of landlords and tenants. Her vision is simple: to
                                 create stress-free, efficient property management solutions that elevate the experience for everyone involved.
                             </p>
                         </div>
@@ -53,12 +53,12 @@ function AboutPage() {
                 <div className="container text-center">
                     <h2>Our Mission & Vision</h2>
                     <p>
-                        To provide landlords and tenants with peace of mind through innovative solutions and exceptional service. 
+                        Our mission is to provide landlords and tenants with peace of mind through innovative solutions and exceptional service. 
                         We believe in a future where property management is effortless, transparent, and trusted by all.
                     </p>
                     <p>
-                        Our vision is to empower property owners to maximize the value of their investments while creating a positive and supportive experience for tenants. 
-                        By blending cutting-edge technology with a personalized approach, we’re setting a new standard for excellence in the industry.
+                        Our vision is to empower property owners to maximize the value of their investments while fostering a positive and supportive experience for tenants. 
+                        By combining user-friendly tools with a personalized approach, we strive to deliver a reliable and seamless property management experience.
                     </p>
                 </div>
             </section>

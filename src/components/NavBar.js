@@ -29,7 +29,7 @@ function NavBar({ role, handleLogout }) {
             </div>
 
             {/* Navigation Links */}
-            <div className={`nav-links mobile ${menuOpen ? 'active' : ''}`}>
+            <div className={`nav-links ${menuOpen ? 'mobile active' : 'desktop'}`}>
                 <Link to="/" onClick={handleNavigation}>Home</Link>
                 <Link to="/properties" onClick={handleNavigation}>Properties</Link>
                 {role === '' && (
