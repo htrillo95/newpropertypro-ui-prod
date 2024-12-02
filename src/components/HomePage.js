@@ -94,32 +94,34 @@ function HomePage() {
 
       {/* Footer Section */}
       <footer className="footer">
-        <div className="footer-container">
-          {/* Left Section: Logo and Contact */}
-          <div className="footer-left">
-            <img
-              src={logoIcon}
-              alt="Trillo RE Icon"
-              className="footer-logo"
-            />
-            <p>P.O Box 3612</p>
-            <p>Philadelphia, PA 19125</p>
-            <p>Email: TrilloMGMT@gmail.com</p>
-            <p>Phone: (215) 989-5411</p>
-          </div>
+                <div className="footer-container">
+                    {/* Left Section: Logo and Contact */}
+                    <div className="footer-left">
+                        <img
+                            src={logoIcon}
+                            alt="Trillo RE Icon"
+                            className="footer-logo"
+                        />
+                        <p>P.O Box 3612</p>
+                        <p>Philadelphia, PA 19125</p>
+                        <p>Email: TrilloMGMT@gmail.com</p>
+                        <p>Phone: (215) 989-5411</p>
+                      </div>
 
-          {/* Right Section: Navigation Links */}
-          <div className="footer-right">
-            <h4>Explore</h4>
-            <ul>
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/properties">Featured Properties</Link></li>
-              <li><Link to="/login">Tenants</Link></li>
-              <li><Link to="/register">Register</Link></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+                    {/* Right Section: Navigation Links */}
+                    <div className="footer-right">
+                        <p></p>
+                        <h4>Explore</h4>
+                        <p></p>
+                        <ul>
+                            <li><Link to="/about">About</Link></li>
+                            <li><Link to="/properties">Featured Properties</Link></li>
+                            <li><Link to="/login">Tenants</Link></li>
+                            <li><Link to="/register">Register</Link></li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
     </div>
   );
 }
