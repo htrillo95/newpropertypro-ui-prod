@@ -12,7 +12,7 @@ function AboutPage() {
                 <div className="container">
                     <h1 className="display-4">More About Us</h1>
                     <p className="lead">
-                        At Trillo RE, we go beyond property management. Our commitment lies in fostering strong relationships, 
+                        At Trillo Real Estate, we go beyond property management. Our commitment lies in fostering strong relationships, 
                         enhancing property value, and providing unparalleled tenant satisfaction. Explore our story and see how we’re reshaping the property management experience.
                     </p>
                 </div>
